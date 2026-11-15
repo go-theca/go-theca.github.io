@@ -1,0 +1,15 @@
+<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="go-theca">
+  <defs>
+    <linearGradient id="gocyan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22CCE2"/>
+      <stop offset="1" stop-color="#0079A8"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="url(#gocyan)"/>
+  <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="10">
+    <rect x="62" y="82" width="132" height="102" rx="16"/>
+    <path d="M62 116H194"/>
+    <circle cx="128" cy="150" r="9"/>
+    <path d="M128 159v10"/>
+  </g>
+</svg>

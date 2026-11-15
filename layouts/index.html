@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ .Site.Title }} — pure-Go encrypted containers</title>
+<meta name="description" content="Theca: an encrypted container format in pure Go, built from published primitives composed with stated security arguments. Design stage.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+{{ partial "styles.html" . }}
+{{/* The template's own rules for what <main> holds, kept for it alone (class legacy),
+     its colours read from the kit's tokens. Written by landingmigrate. */}}
+<style>
+.legacy{--fg:var(--ink);--muted:var(--slate);--card:var(--bg-soft);--border:var(--line)}
+.legacy .lead{color: var(--fg); max-width: 800px; margin: 8px auto 0; text-align: center;}
+.legacy h2.section{text-align: center; margin: 40px 0 4px; font-size: 1.4rem;}
+.legacy .grid{display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; padding: 16px 0 8px;}
+.legacy .card{background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column;}
+.legacy .card h3{margin: 0 0 .35em; font-size: 1.2rem; display: flex; align-items: center; justify-content: space-between;}
+.legacy .card h3 a{text-decoration: none;}
+.legacy .card p{margin: 0 0 .8em; color: var(--fg); font-size: .95rem;}
+.legacy .card .badges{margin-top: auto;}
+.legacy .card .badges img{height: 20px; vertical-align: middle;}
+.legacy .role{font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent);}
+.legacy .principles{color: var(--muted); text-align: center; padding: 10px 0 0; max-width: 820px; margin: 0 auto;}
+</style>
+</head>
+<body class="lm">
+  <header class="nav"><div class="wrap">
+    <a class="brand" href="/"><img class="glyph" src="/img/logo.svg" width="32" height="32" alt="go-theca logo"> {{ .Site.Title }}</a>
+    {{ partial "theme-toggle.html" . }}
+  </div></header>
+  {{ partial "fork-ribbon.html" "https://github.com/go-theca" }}
+
+  <div class="hero"><div class="wrap">
+    <div>
+      <h1 class="head">go-theca</h1>
+      <p class="sub">{{ if partial "mantra-on.html" . }}Go{{ else }}Pure-Go{{ end }} <strong>encrypted containers</strong> &mdash;
+      a format that invents no primitive and no mode, and composes published, analysed
+      ones with security arguments a reviewer can check.</p>
+      {{/* [[params.cta]] in hugo.toml: the kit renders the row */}}
+      {{ partial "cta.html" . }}
+      <div class="trust">{{ if not (partial "mantra-on.html" $) }}<span class="pill">CGO_ENABLED=0</span>{{ end }}<span class="pill">design stage</span><span class="pill">Argon2id</span><span class="pill">authenticated sectors</span></div>
+    </div>
+    {{ partial "hero-carousel.html" . }}
+  </div></div>
+
+  {{ with .Site.Params.repos }}<div class="strip"><div class="wrap">
+    <span class="lead-line">One organisation, <b>{{ len . }}</b> repository</span>
+    <div class="mods">{{ range . }}<a href="#repos">{{ .name }}</a>{{ end }}</div>
+  </div></div>{{ end }}
+
+  <main id="repos" class="legacy"><div class="wrap">
+    <p class="lead"><strong>Theca</strong> is an encrypted container format: a file or a block device that holds a
+      volume. The goal is a format that is better than the state of the art in <em>composition</em>,
+      that is, in how known primitives are put together.</p>
+
+    <h2 class="section">Repositories</h2>
+    <section class="grid">
+      {{ range .Site.Params.repos }}
+      <article class="card">
+        <h3>
+          <a href="https://github.com/go-theca/{{ .name }}"><code>{{ .name }}</code></a>
+          <span class="role">{{ .role }}</span>
+        </h3>
+        <p>{{ .blurb }}</p>
+        <div class="badges">
+          <a href="https://github.com/go-theca/{{ .name }}/actions/workflows/ci.yml"><img src="https://github.com/go-theca/{{ .name }}/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+        </div>
+      </article>
+      {{ end }}
+    </section>
+    <p class="principles">Nothing here is a commitment until a v0.1 tag says so.
+      {{ if not (partial "mantra-on.html" $) }}BSD-3-Clause throughout.{{ end }}</p>
+    </div></main>
+
+  <footer><div class="wrap"><span>{{ if not (partial "mantra-on.html" $) }}BSD-3-Clause · {{ end }}<a href="https://github.com/go-theca">github.com/go-theca</a></span></div></footer>
+</body>
+</html>

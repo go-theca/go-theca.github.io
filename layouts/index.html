@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ .Site.Title }} — pure-Go encrypted containers</title>
-<meta name="description" content="Theca: an encrypted container format in pure Go, built from published primitives composed with stated security arguments. Design stage.">
+<meta name="description" content="Theca: an encrypted container format in pure Go, built from published primitives composed with stated security arguments. Pre-release.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 {{ partial "styles.html" . }}
 {{/* The template's own rules for what <main> holds, kept for it alone (class legacy),
@@ -39,7 +39,7 @@
       ones with security arguments a reviewer can check.</p>
       {{/* [[params.cta]] in hugo.toml: the kit renders the row */}}
       {{ partial "cta.html" . }}
-      <div class="trust">{{ if not (partial "mantra-on.html" $) }}<span class="pill">CGO_ENABLED=0</span>{{ end }}<span class="pill">design stage</span><span class="pill">Argon2id</span><span class="pill">authenticated sectors</span></div>
+      <div class="trust">{{ if not (partial "mantra-on.html" $) }}<span class="pill">CGO_ENABLED=0</span>{{ end }}<span class="pill">pre-release</span><span class="pill">Argon2id</span><span class="pill">authenticated sectors</span></div>
     </div>
     {{ partial "hero-carousel.html" . }}
   </div></div>
@@ -63,6 +63,7 @@
           <span class="role">{{ .role }}</span>
         </h3>
         <p>{{ .blurb }}</p>
+        {{ with .docs }}<p><a href="{{ . }}">Documentation</a></p>{{ end }}
         <div class="badges">
           <a href="https://github.com/go-theca/{{ .name }}/actions/workflows/ci.yml"><img src="https://github.com/go-theca/{{ .name }}/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
         </div>

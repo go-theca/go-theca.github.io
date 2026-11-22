@@ -39,7 +39,7 @@
       ones with security arguments a reviewer can check.</p>
       {{/* [[params.cta]] in hugo.toml: the kit renders the row */}}
       {{ partial "cta.html" . }}
-      <div class="trust">{{ if not (partial "mantra-on.html" $) }}<span class="pill">CGO_ENABLED=0</span>{{ end }}<span class="pill">v0.10.3</span><span class="pill">Argon2id</span><span class="pill">authenticated sectors</span></div>
+      <div class="trust">{{ if not (partial "mantra-on.html" $) }}<span class="pill">CGO_ENABLED=0</span>{{ end }}{{ with index .Site.Params.repos 0 }}<span class="pill">{{ path.Base .release }}</span>{{ end }}<span class="pill">Argon2id</span><span class="pill">authenticated sectors</span></div>
     </div>
     {{ partial "hero-carousel.html" . }}
   </div></div>
@@ -60,7 +60,7 @@
       <article class="card">
         <h3>
           <a href="https://github.com/go-theca/{{ .name }}"><code>{{ .name }}</code></a>
-          <span class="role">{{ .role }}</span>
+          <span class="role">{{ with .release }}{{ path.Base . }}{{ else }}{{ .role }}{{ end }}</span>
         </h3>
         <p>{{ .blurb }}</p>
         {{ if .docs }}<p><a href="{{ .docs }}">Documentation</a>{{ with .release }} &middot; <a href="{{ . }}">Release</a>{{ end }}</p>{{ end }}
@@ -70,7 +70,7 @@
       </article>
       {{ end }}
     </section>
-    <p class="principles">Theca v0.25.0 (security: keys locked in RAM, no core dump for the daemon, PIN and recovery code wiped after use) and gui v0.4.0 are released: a container's files can be shared and mounted from the command line, a library or a window.
+    <p class="principles">Theca and its desktop gui are released (the version of each is on its card above): a container's files can be shared and mounted from the command line, a library or a window.
       {{ if not (partial "mantra-on.html" $) }}BSD-3-Clause throughout.{{ end }}</p>
     </div></main>
 
